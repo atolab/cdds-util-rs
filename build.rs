@@ -23,6 +23,7 @@ fn main() {
     let cyclonedds_dst = Config::new("src/cyclonedds")
         .define("BUILD_IDLC", "OFF")
         .define("BUILD_SHARED_LIBS", "OFF")
+        .define("BUILD_TESTING", "OFF")
         // .define("ENABLE_SSL", "OFF") // Disable SSL for now
         .build();
 
