@@ -28,6 +28,8 @@ fn main() {
         .build();
 
     let cdds_util_dst = Config::new("src/cdds-util")
+        .define("CMAKE_C_FLAGS", format!("-I{}/include", cyclonedds_dst.display()))
+        .define("BUILD_SHARED_LIBS", "OFF")
         .build();
 
     println!("cargo:rustc-link-search=native={}/lib", cyclonedds_dst.display());
@@ -37,8 +39,8 @@ fn main() {
     let bindings = bindgen::Builder::default()
         .header("wrapper.h")
         .generate_comments(false)
-        .clang_arg(format!("-I{}", cyclonedds_dst.display()))
-        .clang_arg(format!("-I{}", cdds_util_dst.display()))
+        .clang_arg(format!("-I{}/include", cyclonedds_dst.display()))
+        .clang_arg(format!("-I{}/include", cdds_util_dst.display()))
         .generate()
         .expect("Unable to generate bindings");
 
