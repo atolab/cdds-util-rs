@@ -1,0 +1,8 @@
+[submodule "cdds-util/src/cdds-util"]
+	path = cdds-util/src/cdds-util
+	url = https://github.com/atolab/cdds-util.git
+	shallow = true
+[submodule "cdds-util/src/cyclonedds"]
+	path = cdds-util/src/cyclonedds
+	url = https://github.com/atolab/cdds-util.git
+	shallow = true

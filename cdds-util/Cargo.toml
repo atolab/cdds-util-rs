@@ -1,0 +1,9 @@
+[package]
+name = "cdds-util"
+version = "0.1.0"
+authors = ["Esteve Fernandez <esteve@apache.org>"]
+edition = "2018"
+build="build.rs"
+
+[dependencies]
+libddsc-sys = "0.1.3"
