@@ -36,7 +36,8 @@ fn main() {
     let bindings = bindgen::Builder::default()
         .header("wrapper.h")
         .generate_comments(false)
-        .clang_arg("-I{}", dst.display())
+        .clang_arg(format!("-I{}", cyclonedds_dst.display()))
+        .clang_arg(format!("-I{}", cdds_util_dst.display()))
         .generate()
         .expect("Unable to generate bindings");
 

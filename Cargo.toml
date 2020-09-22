@@ -5,5 +5,9 @@ authors = ["Esteve Fernandez <esteve@apache.org>"]
 edition = "2018"
 build="build.rs"
 
+[build-dependencies]
+bindgen = "0.53.1"
+cmake = "0.1.44"
+
 [dependencies]
-libddsc-sys = "0.1.3"
+# libddsc-sys = "0.1.3"
