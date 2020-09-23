@@ -19,5 +19,5 @@ cmake = "0.1.44"
 libc = "0.2.77"
 
 [[example]]
-name = "disco"
-path = "examples/disco.rs"
+name = "discoverer"
+path = "examples/discoverer.rs"
