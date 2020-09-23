@@ -10,6 +10,11 @@ use std::process::Command;
 fn main() {
     println!("cargo:rustc-link-lib=ddsc");
     println!("cargo:rustc-link-lib=cdds-util");
+
+    // OpenSSL libraries
+    println!("cargo:rustc-link-lib=crypto");
+    println!("cargo:rustc-link-lib=ssl");
+
     if !Path::new("src/cyclonedds/.git").exists() {
         let _ = Command::new("git")
             .args(&["submodule", "update", "--init", "src/cyclonedds"])
@@ -26,12 +31,12 @@ fn main() {
         .define("BUILD_IDLC", "OFF")
         .define("BUILD_SHARED_LIBS", "OFF")
         .define("BUILD_TESTING", "OFF")
-        .define("ENABLE_SSL", "OFF") // Disable SSL for now
         .build();
 
     let cdds_util_dst = Config::new("src/cdds-util")
         .define("CMAKE_C_FLAGS", format!("-I{}/include", cyclonedds_dst.display()))
         .define("BUILD_SHARED_LIBS", "OFF")
+        .define("BUILD_CDDS_UTIL_EXAMPLES", "OFF")
         .build();
 
     println!("cargo:rustc-link-search=native={}/lib", cyclonedds_dst.display());
