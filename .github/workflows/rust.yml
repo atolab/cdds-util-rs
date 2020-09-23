@@ -12,11 +12,15 @@ env:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
 
     steps:
     - name: Install OpenSSL development library
       run: sudo apt-get update && sudo apt-get install -y libssl-dev libssl1.1
+      if: ${{ matrix.os == 'ubuntu-latest' }}
 
     - uses: actions/checkout@v2
 
