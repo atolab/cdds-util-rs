@@ -26,7 +26,7 @@ fn main() {
         .define("BUILD_IDLC", "OFF")
         .define("BUILD_SHARED_LIBS", "OFF")
         .define("BUILD_TESTING", "OFF")
-        // .define("ENABLE_SSL", "OFF") // Disable SSL for now
+        .define("ENABLE_SSL", "OFF") // Disable SSL for now
         .build();
 
     let cdds_util_dst = Config::new("src/cdds-util")
