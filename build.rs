@@ -12,8 +12,10 @@ fn main() {
     println!("cargo:rustc-link-lib=cdds-util");
 
     // OpenSSL libraries
-    println!("cargo:rustc-link-lib=crypto");
-    println!("cargo:rustc-link-lib=ssl");
+    if cfg!(target_os = "linux") {
+        println!("cargo:rustc-link-lib=crypto");
+        println!("cargo:rustc-link-lib=ssl");
+    }
 
     if !Path::new("src/cyclonedds/.git").exists() {
         let _ = Command::new("git")
