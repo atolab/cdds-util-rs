@@ -1,9 +1,8 @@
-use std::mem::MaybeUninit;
 use cdds_util::*;
 use std::ffi::{CStr, CString};
+use std::mem::MaybeUninit;
 use std::sync::mpsc::{channel, Receiver, Sender};
 use std::sync::Arc;
-
 
 const MAX_SAMPLES: usize = 32;
 
@@ -13,7 +12,7 @@ pub enum MatchedEntity {
         topic_name: String,
         type_name: String,
         partition: Option<String>,
-        qos: Arc<*mut dds_qos_t>
+        qos: Arc<*mut dds_qos_t>,
     },
     UndiscoveredPublication {
         topic_name: String,
@@ -24,7 +23,7 @@ pub enum MatchedEntity {
         topic_name: String,
         type_name: String,
         partition: Option<String>,
-        qos: Arc<*mut dds_qos_t>
+        qos: Arc<*mut dds_qos_t>,
     },
     UndiscoveredSubscription {
         topic_name: String,
@@ -75,7 +74,7 @@ unsafe extern "C" fn on_data(dr: dds_entity_t, arg: *mut std::os::raw::c_void) {
                                     topic_name: String::from(topic_name),
                                     type_name: String::from(type_name),
                                     partition: Some(String::from(p)),
-                                    qos: bqos.clone()
+                                    qos: bqos.clone(),
                                 })
                                 .unwrap();
                         } else {
@@ -84,7 +83,7 @@ unsafe extern "C" fn on_data(dr: dds_entity_t, arg: *mut std::os::raw::c_void) {
                                     topic_name: String::from(topic_name),
                                     type_name: String::from(type_name),
                                     partition: Some(String::from(p)),
-                                    qos: bqos.clone()
+                                    qos: bqos.clone(),
                                 })
                                 .unwrap();
                         }
@@ -113,7 +112,7 @@ unsafe extern "C" fn on_data(dr: dds_entity_t, arg: *mut std::os::raw::c_void) {
                             topic_name: String::from(topic_name),
                             type_name: String::from(type_name),
                             partition: None,
-                            qos: bqos.clone()
+                            qos: bqos.clone(),
                         })
                         .unwrap();
                 } else {
@@ -122,7 +121,7 @@ unsafe extern "C" fn on_data(dr: dds_entity_t, arg: *mut std::os::raw::c_void) {
                             topic_name: String::from(topic_name),
                             type_name: String::from(type_name),
                             partition: None,
-                            qos: bqos.clone()
+                            qos: bqos.clone(),
                         })
                         .unwrap();
                 }

@@ -34,13 +34,22 @@ fn main() {
         .build();
 
     let cdds_util_dst = Config::new("src/cdds-util")
-        .define("CMAKE_C_FLAGS", format!("-I{}/include", cyclonedds_dst.display()))
+        .define(
+            "CMAKE_C_FLAGS",
+            format!("-I{}/include", cyclonedds_dst.display()),
+        )
         .define("BUILD_SHARED_LIBS", "OFF")
         .define("BUILD_CDDS_UTIL_EXAMPLES", "OFF")
         .build();
 
-    println!("cargo:rustc-link-search=native={}/lib", cyclonedds_dst.display());
-    println!("cargo:rustc-link-search=native={}/lib", cdds_util_dst.display());
+    println!(
+        "cargo:rustc-link-search=native={}/lib",
+        cyclonedds_dst.display()
+    );
+    println!(
+        "cargo:rustc-link-search=native={}/lib",
+        cdds_util_dst.display()
+    );
     println!("cargo:rustc-link-lib=static=cdds-util");
 
     let bindings = bindgen::Builder::default()
