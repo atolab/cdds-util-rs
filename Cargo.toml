@@ -1,6 +1,6 @@
 [package]
 name = "cdds-util"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Esteve Fernandez <esteve@apache.org>", "kydos <angelo@icorsaro.net>"]
 edition = "2018"
 build="build.rs"
@@ -14,3 +14,10 @@ description = "Cyclone DDS and some cyclone utils low-level Rust bindings."
 [build-dependencies]
 bindgen = "0.55.1"
 cmake = "0.1.44"
+
+[dependencies]
+libc = "0.2.77"
+
+[[example]]
+name = "disco"
+path = "examples/disco.rs"

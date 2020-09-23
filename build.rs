@@ -8,6 +8,8 @@ use std::path::PathBuf;
 use std::process::Command;
 
 fn main() {
+    println!("cargo:rustc-link-lib=ddsc");
+    println!("cargo:rustc-link-lib=cdds-util");
     if !Path::new("src/cyclonedds/.git").exists() {
         let _ = Command::new("git")
             .args(&["submodule", "update", "--init", "src/cyclonedds"])
