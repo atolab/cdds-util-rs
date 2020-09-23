@@ -12,8 +12,7 @@ fn main() {
     println!("cargo:rustc-link-lib=cdds-util");
 
     // OpenSSL libraries
-    if cfg!(target_os = "linux")
-    {
+    if cfg!(target_os = "linux") {
         println!("cargo:rustc-link-lib=crypto");
     }
     println!("cargo:rustc-link-lib=ssl");
