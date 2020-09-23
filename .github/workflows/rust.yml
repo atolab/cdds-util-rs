@@ -22,6 +22,11 @@ jobs:
       run: sudo apt-get update && sudo apt-get install -y libssl-dev libssl1.1
       if: ${{ matrix.os == 'ubuntu-latest' }}
 
+    - name: Install latest toolchain
+      uses: actions-rs/toolchain@v1
+      with:
+          components: rustfmt, clippy
+
     - uses: actions/checkout@v2
 
     - name: Run cargo check
